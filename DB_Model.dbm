@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="new_database">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="Metier">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="180" y="140"/>
+	<column name="idMetier" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nomMetier" not-null="true">
+		<type name="character varying" length="55"/>
+	</column>
+	<constraint name="idMetier" type="pk-constr" table="public.&quot;Metier&quot;">
+		<columns names="idMetier" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="secteur">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="180" y="380"/>
+	<column name="idSecteur" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nomSecteur" not-null="true">
+		<type name="character varying" length="55"/>
+	</column>
+	<constraint name="idsecteur" type="pk-constr" table="public.secteur">
+		<columns names="idSecteur" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="lier" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#06aeb9"
+	 src-table="public.secteur"
+	 dst-table="public.&quot;Metier&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="emplois">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="720" y="140"/>
+	<column name="idEmploi" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nomEmploi" not-null="true">
+		<type name="character varying" length="55"/>
+	</column>
+	<constraint name="idEmploi" type="pk-constr" table="public.emplois">
+		<columns names="idEmploi" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="idMetier_Metier" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="Metier_fk" index="0"/>
+	</customidxs>
+</table>
+
+<relationship name="a" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#461bcc"
+	 src-table="public.&quot;Metier&quot;"
+	 dst-table="public.emplois"
+	 src-required="true" dst-required="false"/>
+
+<table name="offres">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="720" y="420"/>
+	<column name="idOffre" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nomEntreprise" not-null="true">
+		<type name="character varying" length="250"/>
+	</column>
+	<column name="zone">
+		<type name="character varying" length="55"/>
+	</column>
+	<column name="dateExpiration" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="libelle">
+		<type name="character varying" length="250"/>
+	</column>
+	<constraint name="idOffre" type="pk-constr" table="public.offres">
+		<columns names="idOffre" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="est" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#34b4b7"
+	 src-table="public.emplois"
+	 dst-table="public.offres"
+	 src-required="true" dst-required="false"/>
+
+</dbmodel>
