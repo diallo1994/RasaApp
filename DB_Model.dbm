@@ -5,7 +5,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 -->
 <dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="0,0" last-zoom="1"
 	 default-schema="public" default-owner="postgres">
-<database name="new_database">
+<database name="botEmploi">
 </database>
 
 <schema name="public" fill-color="#e1e1e1" sql-disabled="true">
